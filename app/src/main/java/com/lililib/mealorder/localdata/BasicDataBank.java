@@ -11,19 +11,21 @@ import android.util.Log;
 import com.lililib.mealorder.BuildConfig;
 
 
-public class BasicDataBank {
-    protected Context mContext;
+public abstract class BasicDataBank<E> {
     protected SQLiteDatabase db;
     protected SQLiteOpenHelper mHelper;
 
-    public BasicDataBank(Context context, SQLiteOpenHelper dbHelper){
-        mContext = context;
-        mHelper = dbHelper;
+    public BasicDataBank(SQLiteOpenHelper mHelper){
+        this.mHelper = mHelper;
     }
 
     protected void removeData(String tableName, String where, String[] whereArgs){
         getDb().delete(tableName, where, whereArgs);
     }
+
+    public abstract E toData(Cursor cv);
+
+    public abstract ContentValues toContentValues(E data);
 
     /**
      * 放入一筆資料
@@ -124,10 +126,6 @@ public class BasicDataBank {
             db.close();
             db = null;
         }
-    }
-
-    public Context getContext() {
-        return mContext;
     }
 
     /**

@@ -25,16 +25,16 @@ public abstract class DbNameSpace implements BaseColumns {
     public static final String LIKE_Q = " LIKE ?";
     public static final String IS_Q = "=?";
 
-    protected String createString;
+    //protected String createString;
     protected String table_name;
 
     public DbNameSpace(String table_name) {
         this.table_name = table_name;
     }
 
-    public String getCreateTableString(){
-        return createString;
-    }
+//    public String getCreateTableString(){
+//        return createString;
+//    }
 
     public String getTableName() {
         return table_name;
@@ -56,5 +56,5 @@ public abstract class DbNameSpace implements BaseColumns {
         return "ALTER TABLE "+ table_name +" ADD COLUMN "+columnName + columnType;
     }
 
-    protected abstract String getCreateStr();
+    public abstract String getCreateStr();
 }

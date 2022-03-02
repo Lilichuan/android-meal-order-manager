@@ -8,6 +8,9 @@ import android.provider.BaseColumns;
 
 import com.lililib.mealorder.localdata.BasicDataBank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuDataManager extends BasicDataBank<MealItem> {
 
     public MenuDataManager(Context context){
@@ -30,5 +33,22 @@ public class MenuDataManager extends BasicDataBank<MealItem> {
         cv.put(MealItem.COLUMN_MEAL_NAME, data.getName());
         cv.put(MealItem.COLUMN_MEAL_PRICE, data.getPrice());
         return cv;
+    }
+
+    public void addMeal(MealItem item){
+        if(!item.dataIsOk()){
+            return;
+        }
+        ContentValues cv = toContentValues(item);
+        putOneData(MenuNameSpace.TABLE_NAME_MENU, cv);
+    }
+
+    public List<MealItem> getAllMeal(){
+        List<MealItem> list = new ArrayList<>();
+        Cursor cursor = getAll(MenuNameSpace.TABLE_NAME_MENU);
+        while (cursor.moveToNext()){
+            list.add(toData(cursor));
+        }
+        return list;
     }
 }

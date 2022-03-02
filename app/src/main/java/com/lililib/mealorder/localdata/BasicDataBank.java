@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.lililib.mealorder.BuildConfig;
@@ -98,6 +99,11 @@ public abstract class BasicDataBank<E> {
     protected Cursor query(String tableName, String[] columns, String where, String[] whereArg){
         return getDb().query(tableName, columns, where, whereArg,
                 null , null, null, null);
+    }
+
+    protected Cursor getAll(String tableName){
+        return getDb().query(tableName, null, null, null,
+                null , null, BaseColumns._ID + DbNameSpace.ORDER_BY_DESC, null);
     }
 
     public int getMaxId(String tableName, String idColumn){

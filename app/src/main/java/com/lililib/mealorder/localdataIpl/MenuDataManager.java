@@ -22,7 +22,7 @@ public class MenuDataManager extends BasicDataBank<MealItem> {
     public MealItem toData(Cursor cursor) {
         MealItem mealItem = new MealItem();
         mealItem.setSqlId(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
-        mealItem.setPrice(cursor.getInt(cursor.getColumnIndex(MealItem.COLUMN_MEAL_PRICE)));
+        mealItem.setPrice(cursor.getString(cursor.getColumnIndex(MealItem.COLUMN_MEAL_PRICE)));
         mealItem.setName(cursor.getString(cursor.getColumnIndex(MealItem.COLUMN_MEAL_NAME)));
         return mealItem;
     }
@@ -31,7 +31,7 @@ public class MenuDataManager extends BasicDataBank<MealItem> {
     public ContentValues toContentValues(MealItem data) {
         ContentValues cv = new ContentValues();
         cv.put(MealItem.COLUMN_MEAL_NAME, data.getName());
-        cv.put(MealItem.COLUMN_MEAL_PRICE, data.getPrice());
+        cv.put(MealItem.COLUMN_MEAL_PRICE, data.getPrice().toString());
         return cv;
     }
 

@@ -13,6 +13,6 @@ public class MenuNameSpace extends DbNameSpace {
     @Override
     public String getCreateStr() {
         return startText() + MealItem.COLUMN_MEAL_NAME + TYPE_TEXT
-                + MealItem.COLUMN_MEAL_PRICE + endText(TYPE_MONEY);
+                + MealItem.COLUMN_MEAL_PRICE + endText(TYPE_TEXT);
     }
 }

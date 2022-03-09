@@ -1,5 +1,6 @@
 package com.lililib.mealorder.localdataIpl;
 
+import android.icu.math.BigDecimal;
 import android.text.TextUtils;
 
 public class MealItem {
@@ -7,11 +8,10 @@ public class MealItem {
     public static final String COLUMN_MEAL_NAME = "name";
     public static final String COLUMN_MEAL_PRICE = "price";
 
-    public int sqlId;
-    public String name;
-    public int price;
+    public int sqlId;   public String name;
+    public BigDecimal price;
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -23,8 +23,12 @@ public class MealItem {
         this.sqlId = sqlId;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setPrice(String price_str) {
+        this.price = new BigDecimal(price_str);
     }
 
     public void setName(String name) {
@@ -36,6 +40,6 @@ public class MealItem {
     }
 
     public boolean dataIsOk(){
-        return price > 0 && !TextUtils.isEmpty(name);
+        return price != null && !TextUtils.isEmpty(name);
     }
 }

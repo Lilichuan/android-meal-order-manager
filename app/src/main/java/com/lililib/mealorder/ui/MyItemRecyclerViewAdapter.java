@@ -32,7 +32,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getName());
-        int price = mValues.get(position).getPrice();
+        String price = mValues.get(position).getPrice().toString();
         String moneyStr = holder.itemView.getContext().getResources().getString(R.string.money, price);
         holder.mContentView.setText(moneyStr);
     }
